@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+    <title>スイスドロー計算ツール</title>
+  
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <!-- ナビゲーション部分 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="tool.html">スイスドロー計算ツール</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="tool.html">ツール
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Instruction.html">使い方</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">お問い合わせ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!--ページコンテンツ部分-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          
+          <!-- タブのボタン部分 -->
+          <div class="tab">
+            <a class="tab_btn is-active-btn" href="#item1">選手一覧</a>
+            <a class="tab_btn" href="#item2">スコアシート</a>
+            <a class="tab_btn" href="#item3">成績表</a>
+          </div>
+        
+          <!-- タブのコンテンツ部分 -->
+          
+          <!--タブ１「選手一覧」-->
+          <div class="tab_item is-active-item" id="item1">
+            <table id="list-header">
+              <thead>
+                <tr>
+                  <th>番号</th>
+                  <th>プレイヤー名</th>
+                </tr>
+              </thead>
+            
+              <tbody id="list-form">
+                <tr>
+                  <td> 1 </td>
+                  <td><input type="text" class="playernametext" name="name" id="playername1"></td>
+                </tr>
+              </tbody>
+            </table>
+            <input id="addbutton" type="button" value="プレイヤー追加" onclick="insertRow()">
+            <input id="firstbutton" type="button" value="1回線へ" onclick="scoreSheet()">
+            <input id="deletebutton" type="button" value="削除" onclick="deleteRow()">
+          </div>
+          
+          <!--タブ２「スコアシート」  -->  
+          <div class="tab_item" id="item2">
+            <ul>
+              <li>第</li>
+              <li id="battle_number">1</li>
+              <li>回線</li>
+            </ul>
+            <input id="resultbutton" type="button" value="結果報告" onclick="result()" disabled>
+            <input id="nextbutton" type="button" value="次の対戦へ" onclick="nextgame()" disabled>
+            
+            <table id="score">
+            　<thead>
+            　  <tr>
+              　　<th>卓番</th>
+              　　<th></th>
+              　　<th>勝ち点</th>
+              　　<th></th>
+              　　<th></th>
+              　　<th>勝ち点</th>
+            　　</tr>
+            　</thead>
+            　<tbody>
+              </tbody>
+            </table> 
+          </div>
+        
+          <!--タブ3「成績表」-->
+          <div class="tab_item" id="item3">
+            <table id="resulttable">
+                <thead>
+                  <tr>
+                  　<th>プレイヤー名</th>
+                  　<th>勝ち点</th>
+                  　<th>Opp</th>
+              　　</tr>
+                </thead>
+              　<tbody>
+               </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+     <footer class="footer">
+      <p>&copy;Copyright SHINYA YAGI. ALL rights reserved.</p>
+     </footer>
+     
+    </div>
+    
+    <!-- jQueryによるスクリプト -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- タブの切り替えスクリプト -->
+    <script>
+      $(function() {
+        /*クリックイベント*/
+        $('.tab_btn').on('click', function() {
+          /* 一旦.tab_itemから.is-active-itemを外す */
+          $('.tab_item').removeClass("is-active-item");
+          /* クリックした.tab_btnに対応する.tab_itemに.is-active-itemをつける */
+          $($(this).attr("href")).addClass("is-active-item");            $('.tab_btn').removeClass('is-active-btn');
+          $(this).addClass('is-active-btn');
+        });
+       });
+    </script>
+  </body>
+</html>
