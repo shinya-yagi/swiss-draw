@@ -3,7 +3,6 @@ let battle_histories = {};
 let playerNames = [];
 let table = document.getElementById('list-form');
 let scoretable = document.getElementById('score');
-//let row_len = table.rows.length;
 
 //選手リスト
 function insertRow() {
