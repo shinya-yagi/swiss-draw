@@ -297,7 +297,3 @@ function nextgame(){
     let battle_count = battle_histories[sampleplayer]['histories'].length;
     battle_number.innerHTML = '<li id="battle_number">' + battle_count + '</li>' ;
 }
-
-//ソースコードをgitを使ってバージョン管理がされた状態にしておく
-//ヘロクにアカウントを作成する
-//ヘロクを使用する
